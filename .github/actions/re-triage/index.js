@@ -5,7 +5,7 @@ const github = require('@actions/github');
 
 void async function () {
 	try {
-        console.log(github.context)
+        console.log(github.context.issue.url)
 		// const {eventName, payload} = github.context;
 		// const request = projects.createRequest(eventName, payload);
 		// const accessToken = core.getInput('ghprojects-token');
