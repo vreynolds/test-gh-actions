@@ -1,0 +1,12 @@
+name: Apply project management flow
+on:
+  issue_comment:
+    types: [created]
+jobs:
+  re-triage:
+    runs-on: ubuntu-latest
+    name: Re-triage issue with new comments
+    steps:
+      - uses: ./.github/actions/re-triage
+        with:
+          ghprojects-token: ${{ secrets.GHPROJECTS_TOKEN }}

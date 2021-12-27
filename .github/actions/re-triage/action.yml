@@ -1,0 +1,9 @@
+name: re-triage
+description: Moves issues with new comments to Triage project column.
+inputs:
+  ghprojects-token:
+    description: The GitHub token used to add issues and prs to projects.
+    required: true
+runs:
+  using: node12
+  main: index.js
