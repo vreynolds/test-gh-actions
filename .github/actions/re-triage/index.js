@@ -23,7 +23,6 @@ void async function () {
 				page: page
 			});
 			let cards = response.data;
-			console.log("CARDS: " + JSON.stringify(cards));
 			if (cards.length == 0) {
 				break;
 			}
@@ -34,7 +33,7 @@ void async function () {
 				page++;
 			}
 		}
-		console.log('founds: ' + issueCard)
+		console.log('founds: ' + JSON.stringify(issueCard))
 		// await octokit.rest.projects.createCard(request);
 	} catch (error) {
 		core.setFailed(error.message);
