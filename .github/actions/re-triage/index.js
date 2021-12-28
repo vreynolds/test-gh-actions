@@ -22,7 +22,7 @@ void async function () {
 				per_page: 100,
 				page: page
 			});
-			console.log("CARDS: " + json.stringify(cards));
+			console.log("CARDS: " + JSON.stringify(cards));
 			if (cards.length == 0) {
 				break;
 			}
