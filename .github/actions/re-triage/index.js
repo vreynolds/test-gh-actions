@@ -42,6 +42,12 @@ void async function () {
 		}
 		console.log('end issue card: ' + JSON.stringify(issueCard))
 		if(issueCard) {
+			if(!issueOpen) {
+				await octokit.rest.projects.updateCard({
+					card_id: issueCard.id,
+					archived: false
+				});
+			}
 			await octokit.rest.projects.moveCard({
 				card_id: issueCard.id,
 				column_id: 17334783,
