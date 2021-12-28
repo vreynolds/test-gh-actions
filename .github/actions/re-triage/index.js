@@ -16,12 +16,13 @@ void async function () {
 		let page = 1;
 		let issueCard;
 		while (!issueCard) {
-			let cards = await octokit.rest.projects.listCards({
+			let response = await octokit.rest.projects.listCards({
 				column_id: 17334784,
 				archived_state: "not_archived",
 				per_page: 100,
 				page: page
 			});
+			let cards = response.data;
 			console.log("CARDS: " + JSON.stringify(cards));
 			if (cards.length == 0) {
 				break;
