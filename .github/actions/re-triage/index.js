@@ -6,6 +6,7 @@ const github = require('@actions/github');
 void async function () {
 	try {
         const issueUrl = github.context.payload.issue.url;
+		console.log("context issue: " + github.context.payload.issue);
 		// project - 13957392
 		// triawge - 17334783
 		// ice - 17334784
