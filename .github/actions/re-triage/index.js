@@ -6,10 +6,12 @@ const github = require('@actions/github');
 void async function () {
 	try {
         const issueUrl = github.context.payload.issue.url;
+		const issueOpen = github.context.payload.issue.state === "open";
 		console.log("context issue: " + JSON.stringify(github.context.payload.issue));
 		// project - 13957392
 		// triawge - 17334783
 		// ice - 17334784
+		// done - 17340452
 		// const {eventName, payload} = github.context;
 		// const request = projects.createRequest(eventName, payload);
 		const accessToken = core.getInput('ghprojects-token');
@@ -19,8 +21,7 @@ void async function () {
 		while (!issueCard) {
 			console.log('looking at page: ' + page)
 			let response = await octokit.rest.projects.listCards({
-				column_id: 17334784,
-				archived_state: "not_archived",
+				column_id: issueOpen ? 17334784 : 17340452,
 				per_page: 100,
 				page: page
 			});
