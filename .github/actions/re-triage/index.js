@@ -22,6 +22,7 @@ void async function () {
 			console.log('looking at page: ' + page)
 			let response = await octokit.rest.projects.listCards({
 				column_id: issueOpen ? 17334784 : 17340452,
+				archived_state: issueOpen ? "not_archived" : "all",
 				per_page: 100,
 				page: page
 			});
