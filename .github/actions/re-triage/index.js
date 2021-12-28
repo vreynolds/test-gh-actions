@@ -22,6 +22,7 @@ void async function () {
 				per_page: 100,
 				page: page
 			});
+			console.log("CARDS: " + cards);
 			if (cards.length == 0) {
 				break;
 			}
