@@ -7,13 +7,21 @@ void async function () {
 	try {
         const issueUrl = github.context.payload.issue.url;
 		const issueOpen = github.context.payload.issue.state === "open";
+		const closedAt = github.context.payload.issue.closed_at;
+		if (!issueOpen) {
+			let now = new Date();
+			let closedTime = new Date(closedAt);
+			let closedMinutesAgo = (now - closedTime)/1000;
+			if (closedMinutesAgo < 1) {
+				console.log('likely a closing comment, bailing');
+				return;
+			}
+		}
 		console.log("context issue: " + JSON.stringify(github.context.payload.issue));
 		// project - 13957392
 		// triawge - 17334783
 		// ice - 17334784
 		// done - 17340452
-		// const {eventName, payload} = github.context;
-		// const request = projects.createRequest(eventName, payload);
 		const accessToken = core.getInput('ghprojects-token');
 		const octokit = github.getOctokit(accessToken);
 		let page = 1;
