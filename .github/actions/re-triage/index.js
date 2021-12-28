@@ -34,6 +34,14 @@ void async function () {
 			}
 		}
 		console.log('founds: ' + JSON.stringify(issueCard))
+		console.log('card id: ' + issueCard.id);
+		if(issueCard) {
+			await octokit.rest.projects.moveCard({
+				card_id: issueCard.id,
+				column_id: 17334783,
+				position: "bottom"
+			});
+		}
 		// await octokit.rest.projects.createCard(request);
 	} catch (error) {
 		core.setFailed(error.message);
