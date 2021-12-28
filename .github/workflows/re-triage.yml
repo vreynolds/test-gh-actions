@@ -7,7 +7,6 @@ jobs:
     runs-on: ubuntu-latest
     name: Re-triage issue with new comments
     steps:
-      - uses: actions/checkout@v2
-      - uses: ./.github/actions/re-triage
+      - uses: honeycombio/oss-management-actions/re-triage@v1
         with:
           ghprojects-token: ${{ secrets.GHPROJECTS_TOKEN }}
