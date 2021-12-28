@@ -16,6 +16,7 @@ void async function () {
 		let page = 1;
 		let issueCard;
 		while (!issueCard) {
+			console.log('looking at page: ' + page)
 			let response = await octokit.rest.projects.listCards({
 				column_id: 17334784,
 				archived_state: "not_archived",
@@ -23,18 +24,20 @@ void async function () {
 				page: page
 			});
 			let cards = response.data;
+			console.log('got cards: ' + JSON.stringify(cards))
 			if (cards.length == 0) {
+				console.log('no cards, breaking')
 				break;
 			}
 			let matches = cards.filter(card => card.content_url === issueUrl);
+			console.log('filtered matches: ' + JSON.stringify(matches))
 			if(matches.length > 0) {
 				issueCard = matches[0];
 			} else {
 				page++;
 			}
 		}
-		console.log('founds: ' + JSON.stringify(issueCard))
-		console.log('card id: ' + issueCard.id);
+		console.log('end issue card: ' + JSON.stringify(issueCard))
 		if(issueCard) {
 			await octokit.rest.projects.moveCard({
 				card_id: issueCard.id,
