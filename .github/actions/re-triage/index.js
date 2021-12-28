@@ -11,8 +11,8 @@ void async function () {
 		if (!issueOpen) {
 			let now = new Date();
 			let closedTime = new Date(closedAt);
-			let closedMinutesAgo = (now - closedTime)/1000;
-			if (closedMinutesAgo < 1) {
+			let closedMinutesAgo = (now - closedTime)/60000;
+			if (closedMinutesAgo < 3) {
 				console.log('likely a closing comment, bailing');
 				return;
 			}
